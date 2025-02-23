@@ -1,14 +1,13 @@
-<?php 
+<?php
 include '../assets/conn/config.php';
 if (isset($_GET['aksi'])) {
     if ($_GET['aksi'] == 'simpan') {
-        $nama_lengkap = $_POST['nama_lengkap'];
-        $jenis_kelamin = $_POST['jenis_kelamin'];
-        $umur = $_POST['umur'];
+        $nama_gejala = $_POST['nama_gejala'];
+        $nilai_gejala = $_POST['nilai_gejala'];
 
-        mysqli_query($conn, "INSERT INTO tbl_pasien (nama_lengkap, jenis_kelamin, umur) VALUES
-        ('$nama_lengkap','$jenis_kelamin','$umur')");
-        header("location:pasien.php");
+        mysqli_query($conn, "INSERT INTO tbl_gejala (nama_gejala, nilai_gejala)VALUES
+        ('$nama_gejala',  '$nilai_gejala')");
+        header("location:gejala.php");
     }
 }
 
@@ -22,25 +21,28 @@ include 'header.php';
         </div>
 
         <div class="card-body">
-            <form action="pasien-simpan.php?aksi=simpan" method="post">
-                <input type="hidden" name="id_admin" class="form-control" value="<?= $a['id_admin'] ?>">
+            <form action="gejala-simpan.php?aksi=simpan" method="POST">
+                <div class="form-group">
+                    <label>Nama Gejala</label>
+                    <input type="text" name="nama_gejala" class="form-control" placeholder="Masukkan Nama Gejala"
+                        required>
+                </div>
+                <div class="form-group">
+                    <label>Nilai Keyakinan</label>
+                    <select name="nilai_gejala" class="form-control required">
+                        <option selected disabled>Masukkan Tingkat Keyakinan</option>
+                        <option value="0.1">Sangat Tidak Yakin (0.1)</option>
+                        <option value="0.2">Kurang Yakin (0.2)</option>
+                        <option value="0.3">Sedikit Yakin (0.3)</option>
+                        <option value="0.4">Cukup Yakin (0.4)</option>
+                        <option value="0.5">Setengah Yakin (0.5)</option>
+                        <option value="0.6">Cukup Percaya (0.6)</option>
+                        <option value="0.7">Yakin (0.7)</option>
+                        <option value="0.8">Sangat Yakin (0.8)</option>
+                        <option value="0.9">Hampir Pasti (0.9)</option>
+                    </select>
+                </div>
 
-                <div class="form-group">
-                    <label>Nama Lengkap</label>
-                    <input type="text" name="nama_lengkap" class="form-control" placeholder="Masukkan nama lengkap" required>
-                </div>
-                <div class="form-group">
-                    <label>Jenis Kelamin</label>
-                    <select name="Jenis_kelamin" class="form-control required">
-                    <option selected disabled>Pilih Jenis Kelamin Anda</option>
-                    <option>👦 Laki-Laki</option>
-                    <option>👧 Perempuan</option>
-                   </select>
-                </div>
-                <div class="form-group">
-                    <label>Umur</label>
-                    <input type="number" name="umur" class="form-control" placeholder="Masukkan umur" min="1" required>
-                </div>
                 <a href="gejala.php" class="btn btn-secondary">Batal</a>
                 <input type="submit" value="Simpan" class="btn btn-primary">
             </form>
@@ -48,6 +50,6 @@ include 'header.php';
     </div>
 </div>
 
-<?php 
+<?php
 include 'footer.php';
 ?>
