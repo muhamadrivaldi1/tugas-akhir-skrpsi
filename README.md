@@ -1,1 +1,3 @@
-#Fitur data pasien dan gejala done✅
+#Fitur data pasien done✅
+#Fitur data gejala done✅
+#Fitur data penyakit done✅
