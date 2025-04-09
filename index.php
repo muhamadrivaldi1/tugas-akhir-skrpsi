@@ -91,6 +91,11 @@ if (isset($_GET['aksi'])) {
                                         </div>
                                         <button type="submit" class="btn btn-primary btn-user btn-block"> MASUK</button>
                                     </form>
+                                    <hr>
+
+                                    <div class="text-center">
+                                        <a href="daftar.php">-Daftar Akun-</a>
+                                    </div>
 
                                 </div>
                             </div>

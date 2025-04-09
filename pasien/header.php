@@ -5,6 +5,7 @@ include '../assets/conn/cek.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
   <meta charset="utf-8">
@@ -22,38 +23,38 @@ include '../assets/conn/cek.php';
 </head>
 
 <body id="page-top">
- <!-- Page Wrapper -->
- <div id="wrapper">
+  <!-- Page Wrapper -->
+  <div id="wrapper">
 
-  <!-- Sidebar -->
-  <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <!-- Sidebar -->
+    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
-    </a>
+      <!-- Sidebar - Brand -->
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index">
+      </a>
 
-    <!-- Divider -->
-    <hr class="sidebar-divider my-0">
+      <!-- Divider -->
+      <hr class="sidebar-divider my-0">
 
-    <!-- Nav Item - Dashboard -->
-    <li class="nav-item">
-      <a class="nav-link" href="index.php">
-        <i class="fas fa-fw fa-home"></i>
-        <span>Dashboard</span></a>
+      <!-- Nav Item - Dashboard -->
+      <li class="nav-item">
+        <a class="nav-link" href="index.php">
+          <i class="fas fa-fw fa-home"></i>
+          <span>Dashboard</span></a>
       </li>
 
       <hr class="sidebar-divider my-0">
       <li class="nav-item">
-      <a class="nav-link" href="diagnosa.php">
-        <i class="fas fa-fw fa-stethoscope"></i>
-        <span>Diagnosa</span></a>
+        <a class="nav-link" href="diagnosa.php">
+          <i class="fas fa-fw fa-stethoscope"></i>
+          <span>Diagnosa</span></a>
       </li>
 
       <hr class="sidebar-divider my-0">
       <li class="nav-item">
-      <a class="nav-link" href="history.php">
-        <i class="fas fa-fw fa-history"></i>
-        <span>history</span></a>
+        <a class="nav-link" href="history.php">
+          <i class="fas fa-fw fa-history"></i>
+          <span>history</span></a>
       </li>
 
       <!-- Divider -->
@@ -65,10 +66,6 @@ include '../assets/conn/cek.php';
       </div>
     </ul>
     <!-- End of Sidebar -->
-
-
-
-
 
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -93,69 +90,84 @@ include '../assets/conn/cek.php';
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <?php
-              $username=$_SESSION['username'];
-              $det=mysqli_query($conn,"select * from tbl_admin where username='$username'");
-              while($d=mysqli_fetch_array($det)){
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <?php
+                $username = $_SESSION['username'];
+                $det = mysqli_query($conn, "select * from tbl_admin where username='$username'");
+                while ($d = mysqli_fetch_array($det)) {
                 ?>
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $d['nama_lengkap'] ?></span>
-                <?php 
-              }
-              ?>
-              <span class="fa fa-user"><span>
+                  <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $d['nama_lengkap'] ?></span>
+                <?php
+                }
+                ?>
+                <span class="fa fa-user"><span>
               </a>
               <!-- Dropdown - User Information -->
               <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
-              aria-labelledby="userDropdown">
-              <a class="dropdown-item" href="akun.php">
-                <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                Akun
-              </a>
+                aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="akun.php">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Akun
+                </a>
 
 
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
-                <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                Logout
-              </a>
-            </div>
-          </li>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
 
-        </ul>
+          </ul>
 
-      </nav>
-      <!-- End of Topbar -->
+        </nav>
+        <!-- End of Topbar -->
+        <div class="container-fluid mt-4">
+          <div class="alert alert-primary shadow-sm rounded" style="text-align: justify;">
+            <?php
+            $username = $_SESSION['username'];
+            $det = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE username='$username'");
+            $user = mysqli_fetch_array($det);
 
-    </div>
-    <!-- End of Page Wrapper -->
-
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-      <i class="fas fa-angle-up"></i>
-    </a>
-
-    <!-- Logout Modal-->
-    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Logout ?</h5>
-          <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <div class="modal-body">Anda akan keluar dari hak akses anda !!!</div>
-        <div class="modal-footer">
-          <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-          <a class="btn btn-primaty" href="logout.php">Logout</a>
+            echo "<strong>Hai, " . $user['nama_lengkap'] . "! 👋</strong><br><br>";
+            echo "Selamat datang di <strong>Sistem Pakar Diagnosa Penyakit Pencernaan Anak</strong>! 🎯<br><br>";
+            echo "Dengan menjawab beberapa pertanyaan gejala, kamu bisa mengetahui kemungkinan penyakit yang dialami si kecil beserta saran penanganan awalnya. 💡<br><br>";
+            echo "Gunakan menu <strong>Diagnosa</strong> untuk mulai analisa, atau buka <strong>Riwayat</strong> untuk melihat hasil sebelumnya. 📋<br><br>";
+            echo "<strong>Terima kasih telah peduli pada kesehatan anak. Semoga sehat selalu! 💖</strong>";
+            ?>
+          </div>
         </div>
       </div>
-    </div>
-  </div>
+      <!-- End of Page Wrapper -->
+
+      <!-- Scroll to Top Button-->
+      <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+      </a>
+
+      <!-- Logout Modal-->
+      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Logout ?</h5>
+              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">×</span>
+              </button>
+            </div>
+            <div class="modal-body">Anda akan keluar dari hak akses anda !!!</div>
+            <div class="modal-footer">
+              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+              <a class="btn btn-primaty" href="logout.php">Logout</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
 </body>
+
 </html>
 
 
@@ -174,4 +186,3 @@ include '../assets/conn/cek.php';
 <script src="../assets/vendor/datatables/jquery.dataTables.min.js"></script>
 <script src="../assets/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script src="../assets/js/demo/datatables-demo.js"></script>
-
