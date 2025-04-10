@@ -1,4 +1,4 @@
-<?php 
+<?php
 include '../assets/conn/config.php';
 if (isset($_GET['aksi'])) {
     if ($_GET['aksi'] == 'ubah') {
@@ -6,9 +6,10 @@ if (isset($_GET['aksi'])) {
         $nama_lengkap = $_POST['nama_lengkap'];
         $username = $_POST['username'];
         $password = $_POST['password'];
+        $level = $_POST['level']; // Tambahkan role
 
         mysqli_query($conn, "UPDATE tbl_admin SET nama_lengkap='$nama_lengkap', 
-        username='$username', password='$password' WHERE id_admin= '$id_admin'");
+        username='$username', password='$password', level='$level' WHERE id_admin='$id_admin'");
         header("location:index.php");
     }
 }
@@ -33,21 +34,29 @@ include 'header.php';
                 die("Query error: " . mysqli_error($conn));
             }
             ?>
-            
+
             <form action="akun.php?aksi=ubah" method="post">
                 <input type="hidden" name="id_admin" class="form-control" value="<?= $a['id_admin'] ?>">
 
                 <div class="form-group">
-                    <label>nama_lengkap</label>
+                    <label>Nama Lengkap</label>
                     <input type="text" name="nama_lengkap" class="form-control" value="<?= $a['nama_lengkap'] ?>">
                 </div>
                 <div class="form-group">
-                    <label>username</label>
+                    <label>Username</label>
                     <input type="text" name="username" class="form-control" value="<?= $a['username'] ?>">
                 </div>
                 <div class="form-group">
-                    <label>password</label>
+                    <label>Password</label>
                     <input type="text" name="password" class="form-control" value="<?= $a['password'] ?>">
+                </div>
+
+                <div class="form-group">
+                    <select name="level" class="form-control">
+                        <option selected disabled>Pilih level</option>
+                        <option value="admin" <?= $a['level'] == 'admin' ? 'selected' : '' ?>>Admin</option>
+                        <option value="pasien" <?= $a['level'] == 'pasien' ? 'selected' : '' ?>>Pasien</option>
+                    </select>
                 </div>
                 <a href="index.php" class="btn btn-secondary">Batal</a>
                 <input type="submit" value="Ubah" class="btn btn-primary">
@@ -56,6 +65,6 @@ include 'header.php';
     </div>
 </div>
 
-<?php 
+<?php
 include 'footer.php';
 ?>

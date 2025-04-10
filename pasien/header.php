@@ -93,7 +93,7 @@ include '../assets/conn/cek.php';
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <?php
                 $username = $_SESSION['username'];
-                $det = mysqli_query($conn, "select * from tbl_admin where username='$username'");
+                $det = mysqli_query($conn, "SELECT * from tbl_admin where username='$username'");
                 while ($d = mysqli_fetch_array($det)) {
                 ?>
                   <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?php echo $d['nama_lengkap'] ?></span>
@@ -122,49 +122,31 @@ include '../assets/conn/cek.php';
           </ul>
 
         </nav>
-        <!-- End of Topbar -->
-        <div class="container-fluid mt-4">
-          <div class="alert alert-primary shadow-sm rounded" style="text-align: justify;">
-            <?php
-            $username = $_SESSION['username'];
-            $det = mysqli_query($conn, "SELECT * FROM tbl_admin WHERE username='$username'");
-            $user = mysqli_fetch_array($det);
 
-            echo "<strong>Hai, " . $user['nama_lengkap'] . "! 👋</strong><br><br>";
-            echo "Selamat datang di <strong>Sistem Pakar Diagnosa Penyakit Pencernaan Anak</strong>! 🎯<br><br>";
-            echo "Dengan menjawab beberapa pertanyaan gejala, kamu bisa mengetahui kemungkinan penyakit yang dialami si kecil beserta saran penanganan awalnya. 💡<br><br>";
-            echo "Gunakan menu <strong>Diagnosa</strong> untuk mulai analisa, atau buka <strong>Riwayat</strong> untuk melihat hasil sebelumnya. 📋<br><br>";
-            echo "<strong>Terima kasih telah peduli pada kesehatan anak. Semoga sehat selalu! 💖</strong>";
-            ?>
-          </div>
-        </div>
-      </div>
-      <!-- End of Page Wrapper -->
+        <!-- Scroll to Top Button-->
+        <a class="scroll-to-top rounded" href="#page-top">
+          <i class="fas fa-angle-up"></i>
+        </a>
 
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-      </a>
-
-      <!-- Logout Modal-->
-      <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Logout ?</h5>
-              <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">×</span>
-              </button>
-            </div>
-            <div class="modal-body">Anda akan keluar dari hak akses anda !!!</div>
-            <div class="modal-footer">
-              <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-              <a class="btn btn-primaty" href="logout.php">Logout</a>
+        <!-- Logout Modal-->
+        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+          aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Logout ?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">×</span>
+                </button>
+              </div>
+              <div class="modal-body">Anda akan keluar dari hak akses anda !!!</div>
+              <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primaty" href="logout.php">Logout</a>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
 </body>
 

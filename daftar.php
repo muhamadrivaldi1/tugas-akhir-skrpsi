@@ -9,11 +9,18 @@ if (isset($_GET['aksi'])) {
         $username = $_POST['username'];
         $password = $_POST['password'];
 
-        mysqli_query($conn, "INSERT INTO tbl_pasien (nama_lengkap, jenis_kelamin, umur)
-        VALUES ('$nama_lengkap', '$jenis_kelamin', '$umur')");
+        mysqli_query($conn, "INSERT INTO tbl_admin (nama_lengkap, username, password, level)
+        VALUES('$nama_lengkap','$username','$password','Pasien')");
+
+        $data = mysqli_query($conn, "SELECT * FROM tbl_admin ORDER BY id_admin DESC");
+        $a = mysqli_fetch_array($data); // panggil id_admin 
+
+        mysqli_query($conn, "INSERT INTO tbl_pasien (id_admin,nama_lengkap, jenis_kelamin, umur)
+        VALUES ('$a[id_admin]','$nama_lengkap', '$jenis_kelamin', '$umur')");
+
 
         mysqli_query($conn, "INSERT INTO tbl_admin (nama_lengkap, username, password, level)
-        VALUES('$nama_lengkap','$username','$password','pasien')");
+        VALUES('$nama_lengkap','$username','$password','Pasien')");
         header("location:index.php?pesan=berhasil");
     }
 }
@@ -63,7 +70,7 @@ if (isset($_GET['aksi'])) {
                                             echo "<div class='alert alert-danger'>
                                             <span class='fas fa-times'>
                                             </span>&nbsp; Login Gagal !!</div>";
-                                        }elseif ($_GET['pesan'] == 'berhasil') {
+                                        } elseif ($_GET['pesan'] == 'berhasil') {
                                             echo "<div class='alert alert-primary'>
                                             <span class='fas fa-check'>
                                             </span>&nbsp; Akun Berhasil Terdaftar!!</div>";
